@@ -5,7 +5,12 @@ class DriversController < ApplicationController
   before_action :set_driver, only: %i[update show]
 
   def list
-    @drivers = Driver.all
+    @drivers = if params[:q].blank?
+                 Driver.all
+               else
+                 Driver.where('nickname LIKE :word OR full_name LIKE :word OR cpf LIKE :word',
+                              word: '%' + params[:q] + '%')
+               end
     render json: @drivers
   end
 
