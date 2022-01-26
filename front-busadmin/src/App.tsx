@@ -1,9 +1,13 @@
 import React from 'react';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Login } from './pages/login';
+import GlobalStyle from './styles/global';
 
 function App() {
   return (
-    <div className="App">
-    ola mundo
+    <div>
+      <Login />
+      <GlobalStyle />
     </div>
   );
 }
