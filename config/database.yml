@@ -10,7 +10,7 @@ development:
   database: busadmin_web_development
   username: postgres
   password: password
-  host: 172.26.0.2
+  host: db
   port: 5432
 
 test:
