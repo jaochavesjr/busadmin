@@ -1,6 +1,9 @@
 FROM ruby:3.1.0-slim
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client build-essential automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip curl zlib1g-dev libpq-dev
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client \
+  build-essential automake autoconf libreadline-dev libncurses-dev libssl-dev \
+  libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev unzip curl \
+  zlib1g-dev libpq-dev
 
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
