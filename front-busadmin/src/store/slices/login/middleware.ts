@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ILogin } from '../../../components/login';
 import api from '../../../components/utils/api';
 import { ENPOINTS } from '../../../config/endpoints';
 
 export const login = createAsyncThunk(
   'login/login',
-  async (credentials, thunkAPI) => {
+  async (credentials: ILogin, thunkAPI) => {
     try {
       const response = await api.post(ENPOINTS.login, credentials);
       console.log(response);

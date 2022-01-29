@@ -6,7 +6,7 @@ import { login, createUser } from '../../store/slices/login/middleware';
 import { useAppDispatch } from '../../store/hooks';
 import { useEffect } from 'react';
 
-interface ILogin {
+export interface ILogin {
   username: string;
   password: string;
 }
@@ -18,20 +18,11 @@ export const Login = () => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const create = async () => {
-      const response = await dispatch(createUser());
-      console.log(response);
-    };
-    create();
-    
-  }, []);
-
   const onSubmit = async (data: ILogin) => {
     console.log(data);
 
-    // const response = await dispatch(login(data));
-    // console.log(response);
+    const response = await dispatch(login(data));
+    console.log(response);
   };
 
   return (
