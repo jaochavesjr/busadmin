@@ -1,14 +1,18 @@
 import React from 'react';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login } from './pages/login';
 import GlobalStyle from './styles/global';
+import { Dashboard } from './pages/dashboard';
 
 function App() {
   return (
-    <div>
+    <Router>
       <Login />
       <GlobalStyle />
-    </div>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
