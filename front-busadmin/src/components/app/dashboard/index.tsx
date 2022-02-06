@@ -1,7 +1,15 @@
+import { DashboardPage } from "../../dashboardPage";
+
+import {
+  Container,
+} from './styles';
+
 export const Dashboard = () => {
   return (
-    <div>
-      ola mundo
-    </div>
-  )
+    <DashboardPage title="Dashboard">
+      {/* <div> */}
+        Ola mundo
+      {/* </div> */}
+    </DashboardPage>
+  );
 }

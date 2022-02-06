@@ -1,24 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAuth } from '../../../types/auth';
+
+import { IAuthState, IResponseLogin } from '../../../types/auth';
 import { login } from './middleware';
 
-const initialState: IAuth = {
+const initialState: IAuthState = {
   userToken: '',
   loading: false,
   error: '',
 };
 
 const reducers = {
-  setTokenUser: (state: IAuth, action: PayloadAction<string>) => {
+  setTokenUser: (state: IAuthState, action: PayloadAction<string>) => {
     state.userToken = action.payload;
     state.loading = false;
   },
-  removeTokenUser: (state: IAuth) => {
+  removeTokenUser: (state: IAuthState) => {
     state.userToken = '';
   },
 };
 
-export const auhtSlice = createSlice({
+export const authSlice = createSlice({
   name: 'login',
   initialState,
   reducers,
@@ -30,7 +31,8 @@ export const auhtSlice = createSlice({
     }));
     builder.addCase(login.fulfilled, (state, action: PayloadAction<any>) => ({
       ...state,
-      userToken: action.payload,
+      userToken: action.payload.token,
+      loading: false,
     }));
     builder.addCase(login.rejected, (state) => ({
       ...state,
@@ -40,6 +42,6 @@ export const auhtSlice = createSlice({
   },
 });
 
-export const { setTokenUser, removeTokenUser } = auhtSlice.actions;
+export const { setTokenUser, removeTokenUser } = authSlice.actions;
 
-export default auhtSlice.reducer;
+export default authSlice.reducer;

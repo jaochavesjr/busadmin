@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from './validations';
 import { login, createUser } from '../../store/slices/login/middleware';
 import { useAppDispatch } from '../../store/hooks';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export interface ILogin {
   username: string;
@@ -16,13 +17,15 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: ILogin) => {
     console.log(data);
 
     const response = await dispatch(login(data));
-    console.log(response);
+    console.log((response as any).payload);
+    if ((response as any).payload.token) navigate('/dashboard');
   };
 
   return (
