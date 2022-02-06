@@ -1,4 +1,4 @@
-import { iconBus, iconClient, iconDashboard, iconDriver, iconTravels } from "../utils/imagesPath";
+import { iconBus, iconClient, iconDashboard, iconDriver, iconTravels } from "../../utils/imagesPath";
 
 interface IProps {
   label: string;
@@ -16,7 +16,7 @@ interface ICon {
 export const links: IProps[] = [
   {
     label: 'Dashboard',
-    href: 'dashboard',
+    href: '',
     icon: {
       src: iconDashboard,
       alt: 'icone dashboard',

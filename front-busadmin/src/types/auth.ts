@@ -1,5 +1,19 @@
-export interface IAuth {
+export interface IAuthState {
   userToken: string;
   loading: boolean;
   error: string;
+}
+
+export interface IUser {
+  created_at: string;
+  email: string;
+  id: number;
+  password_digest?: string;
+  updated_at: string;
+  username: string;
+}
+
+export interface IResponseLogin {
+  token: string;
+  user: IUser
 }
