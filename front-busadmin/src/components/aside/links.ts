@@ -64,4 +64,4 @@ export const links: IProps[] = [
       height: 30,
     }
   },
-]
+];
