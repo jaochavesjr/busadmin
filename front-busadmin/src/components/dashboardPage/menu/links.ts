@@ -1,4 +1,4 @@
-import { iconBus, iconClient, iconDashboard, iconDriver, iconTravels } from "../../utils/imagesPath";
+import { iconBus, iconClient, iconDashboard, iconDriver, iconTravels } from "../../../utils/imagesPath";
 
 interface IProps {
   label: string;

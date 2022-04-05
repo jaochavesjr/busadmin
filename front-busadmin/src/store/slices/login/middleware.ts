@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ILogin } from '../../../components/login';
-import api from '../../../components/utils/api';
+import api from '../../../utils/api';
 import { ENDPOINTS } from '../../../config/endpoints';
 import { IResponseLogin } from '../../../types/auth';
 import { IResponseContract } from '../../../types/responseContract';

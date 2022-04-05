@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../../components/utils/api";
+import api from "../../../utils/api";
 import { ENDPOINTS } from "../../../config/endpoints";
 import { IDriver } from "../../../types/drivers";
 import { IResponseContract } from "../../../types/responseContract";
