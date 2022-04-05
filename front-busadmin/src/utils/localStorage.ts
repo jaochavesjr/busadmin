@@ -3,12 +3,8 @@ export const setAuthTokenUser = (token: string) => {
 };
 
 export const getAuthTokenUser = () => {
-  if (typeof window == 'undefined') {
-    return false
-  }
-  console.log('localstorage',  localStorage.getItem('AdminAuthToken'));
-  
-  return localStorage.getItem('AdminAuthToken') || false;
+  const token = JSON.parse((localStorage.getItem('AdminAuthToken') as any));
+  return String(token);
 };
 
 export const RemoveToken = () => {

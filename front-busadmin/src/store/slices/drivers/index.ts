@@ -21,7 +21,7 @@ export const driverSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchDrivers.fulfilled, (state, action: PayloadAction<any>) => ({
        ...state,
-       drivers: action.payload!
+       drivers: action.payload,
     }))
   }
 });

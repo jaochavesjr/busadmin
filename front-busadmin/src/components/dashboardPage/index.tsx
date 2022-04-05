@@ -17,7 +17,6 @@ export const DashboardPage = ({ title = 'Admin', children }: IProps) => {
   const navigate = useNavigate();
   
   const { userToken } = useAppSelector((state) => state.auth);
-  console.log(userToken);
   
   useEffect(() => {
       document.title = `${title} - Bus Admin`;

@@ -8,9 +8,7 @@ export const fetchDrivers = createAsyncThunk(
   'drivers,fetch',
   async (_, thunkAPI) => {
     try {
-      const response = await api.get<IDriver[]>(ENDPOINTS.showDrivers);
-      console.log(response);
-      
+      const response = await api.get<IResponseContract<IDriver[]>>(ENDPOINTS.showDrivers);
       return response.data;
     } catch (error) {
       console.log((error as any).response);

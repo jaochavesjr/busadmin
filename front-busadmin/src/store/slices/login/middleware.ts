@@ -14,7 +14,6 @@ export const login = createAsyncThunk(
       const response = await api.post<IResponseLogin>(ENDPOINTS.login, credentials);
       setUserApi(response.data.token);
       setAuthTokenUser(response.data.token);
-      console.log(response.data.token);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -27,7 +26,6 @@ export const createUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await api.post(ENDPOINTS.createUser, { email: 'email@email.com', user: 'admin', password: '123456' });
-      console.log(response);
       return response;
     } catch (error) {
       console.log(error);

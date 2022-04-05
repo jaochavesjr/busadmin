@@ -1,5 +1,5 @@
 export interface IDriverState {
-  drivers: Array<IDriver[]>;
+  drivers: Array<IDriver>;
   loading: boolean;
 };
 
