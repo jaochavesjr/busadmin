@@ -5,6 +5,7 @@ import GlobalStyle from './styles/global';
 import { Dashboard } from './pages/dashboard';
 import { Clients } from './pages/clients/Clients';
 import { Drivers } from './pages/drivers';
+import { AddDrivers } from './components/app/drivers/AddDriver';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/clientes" element={<Clients />} />
         <Route path="/dashboard/motoristas" element={<Drivers />} />
+        <Route path="/dashboard/motoristas/adicionar" element={<AddDrivers />} />
       </Routes>
     </Router>
   );

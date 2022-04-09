@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const ContainerTable = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  gap: 3em;
   padding: 3em;
   table {
     border-collapse: collapse;

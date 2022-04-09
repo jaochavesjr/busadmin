@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ContainerTable } from './styles';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 export const Table = ({ thead, tbody }: Props) => {
   return (
     <ContainerTable>
+      <Link to={"/dashboard/motoristas/adicionar"}>Adicionar motorista</Link>
       <table>
         <thead>
           <tr>
