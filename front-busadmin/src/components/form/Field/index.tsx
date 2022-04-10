@@ -1,11 +1,12 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { forwardRef, InputHTMLAttributes } from "react";
+import { AnyMask } from "react-imask";
 import { Container, Error, Input, Label, MaskedInput } from "./styles";
 
 interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
-  mask?: string;
+  mask?: AnyMask;
 }
 
 export const Field = forwardRef<HTMLInputElement, FieldProps>((props, ref) => {

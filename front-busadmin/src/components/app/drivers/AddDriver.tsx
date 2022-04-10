@@ -9,12 +9,16 @@ import { Field } from "../../form/Field";
 import { IDriver } from "../../../types/drivers";
 import { Container, Grid } from "./styles";
 import { Button } from "../../Button";
+import { dateMask } from "./masks";
+import { createDriver } from "./middleware";
+import { setError } from "../../../store/slices/errors";
 
 export const AddDrivers = () => {
   const dispatch = useAppDispatch();
+  // const history = useHist
 
   const { drivers } = useAppSelector((state) => state.drivers);
-  
+
   const form = useForm<IDriver>({
     resolver: yupResolver(schema),
   });
@@ -23,6 +27,19 @@ export const AddDrivers = () => {
     formState: { errors },
   } = form;
 
+  const onSubmit = async (data: IDriver) => {
+    try {
+      const response = await dispatch(createDriver(data));
+      console.log(response.payload);
+      if ((response.payload as IDriver).id) {
+        // return <Redirect />
+      }
+    } catch (error) {
+      setError('Ocorreu algum erro, por favor tente novamente!')
+      console.log(error);      
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchDrivers());
   }, []);
@@ -30,21 +47,9 @@ export const AddDrivers = () => {
   return (
     <DashboardPage title="Motoristas">
       <FormProvider {...form}>
-        <form>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <Container>
             <Grid>
-              <Controller
-                name="nickname"
-                control={form.control}
-                render={({ field }) => (
-                  <Field
-                    label="Apelido"
-                    placeholder="Apelido"
-                    error={errors.nickname?.message}
-                    {...field}
-                  />
-                )}
-              />
               <Controller
                 name="full_name"
                 control={form.control}
@@ -58,12 +63,25 @@ export const AddDrivers = () => {
                 )}
               />
               <Controller
+                name="nickname"
+                control={form.control}
+                render={({ field }) => (
+                  <Field
+                    label="Apelido"
+                    placeholder="Apelido"
+                    error={errors.nickname?.message}
+                    {...field}
+                  />
+                )}
+              />
+              <Controller
                 name="cpf"
                 control={form.control}
                 render={({ field }) => (
                   <Field
                     label="CPF"
                     placeholder="CPF"
+                    mask="000.000.000-00"
                     error={errors.cpf?.message}
                     {...field}
                   />
@@ -78,6 +96,7 @@ export const AddDrivers = () => {
                     placeholder="Seu nome"
                     error={errors.birthday?.message}
                     {...field}
+                    {...dateMask}
                   />
                 )}
               />
@@ -102,6 +121,7 @@ export const AddDrivers = () => {
                     placeholder="Data de vencimento"
                     error={errors.license_expiration_date?.message}
                     {...field}
+                    {...dateMask}
                   />
                 )}
               />
@@ -111,6 +131,7 @@ export const AddDrivers = () => {
                 render={({ field }) => (
                   <Field
                     label="Celular 1"
+                    mask="(00) 00000-0000"
                     placeholder="celular"
                     error={errors.cellphone_one?.message}
                     {...field}
@@ -123,6 +144,7 @@ export const AddDrivers = () => {
                 render={({ field }) => (
                   <Field
                     label="Celular 2"
+                    mask="(00) 00000-0000"
                     placeholder="celular"
                     error={errors.cellphone_two?.message}
                     {...field}

@@ -29,18 +29,6 @@ export const Table = ({ thead, tbody }: Props) => {
                 <td>{driver.birthday}</td>
                 <td>{driver.cellphone_one}</td>
               </tr>
-              <tr>
-                <td>{driver.full_name}</td>
-                <td>{driver.cpf}</td>
-                <td>{driver.birthday}</td>
-                <td>{driver.cellphone_one}</td>
-              </tr>
-              <tr>
-                <td>{driver.full_name}</td>
-                <td>{driver.cpf}</td>
-                <td>{driver.birthday}</td>
-                <td>{driver.cellphone_one}</td>
-              </tr>
           </>
 
           ))}
