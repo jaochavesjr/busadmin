@@ -1,23 +1,25 @@
-import { DashboardPage } from "../../dashboardPage";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { useEffect } from "react";
-import { fetchDrivers } from "../../../store/slices/drivers/midleware";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schema } from "./validations";
-import { Field } from "../../form/Field";
+import { useNavigate } from "react-router";
+
+import { useAppDispatch } from "../../../store/hooks";
+import { fetchDrivers } from "../../../store/slices/drivers/midleware";
 import { IDriver } from "../../../types/drivers";
-import { Container, Grid } from "./styles";
+import { setError } from "../../../store/slices/errors";
+
+import { DashboardPage } from "../../dashboardPage";
+import { Field } from "../../form/Field";
 import { Button } from "../../Button";
+
+import { schema } from "./validations";
+import { Container, Grid } from "./styles";
 import { dateMask } from "./masks";
 import { createDriver } from "./middleware";
-import { setError } from "../../../store/slices/errors";
 
 export const AddDrivers = () => {
   const dispatch = useAppDispatch();
-  // const history = useHist
-
-  const { drivers } = useAppSelector((state) => state.drivers);
+  const navigate = useNavigate();
 
   const form = useForm<IDriver>({
     resolver: yupResolver(schema),
@@ -32,7 +34,7 @@ export const AddDrivers = () => {
       const response = await dispatch(createDriver(data));
       console.log(response.payload);
       if ((response.payload as IDriver).id) {
-        // return <Redirect />
+        navigate('/dashboard/motoristas');
       }
     } catch (error) {
       setError('Ocorreu algum erro, por favor tente novamente!')

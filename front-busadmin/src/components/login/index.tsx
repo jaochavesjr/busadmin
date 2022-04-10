@@ -1,10 +1,12 @@
-import { Container } from './styles';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { schema } from './validations';
-import { login, createUser } from '../../store/slices/login/middleware';
-import { useAppDispatch } from '../../store/hooks';
 import { useNavigate } from 'react-router-dom';
+
+import { login } from '../../store/slices/login/middleware';
+import { useAppDispatch } from '../../store/hooks';
+
+import { Container } from './styles';
+import { schema } from './validations';
 
 export interface ILogin {
   username: string;

@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import auth from './slices/login';
 import drivers from './slices/drivers';
 

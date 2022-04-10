@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { IDriver, IDriverState } from "../../../types/drivers";
+
 import { fetchDrivers } from "./midleware";
 
 const initialState: IDriverState = {
@@ -8,7 +10,7 @@ const initialState: IDriverState = {
 };
 
 const reducers = {
-  setDrivers: (state: IDriverState, action: PayloadAction<any[]>) => {
+  setDrivers: (state: IDriverState, action: PayloadAction<IDriver[]>) => {
     state.drivers = action.payload;
     state.loading = false;
   },
