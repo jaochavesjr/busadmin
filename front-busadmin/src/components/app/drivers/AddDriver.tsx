@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchDrivers } from "../../../store/slices/drivers/midleware";
 import { IDriver } from "../../../types/drivers";
 import { setError } from "../../../store/slices/errors";
@@ -20,9 +20,27 @@ import { createDriver } from "./middleware";
 export const AddDrivers = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { drivers } = useAppSelector((state) => state.drivers);
+  const sizeArrPathname = location.pathname.split("/").length - 1;
+  const driver = drivers.find((driver) => driver.id === Number(location.pathname.split("/")[sizeArrPathname]));
+  const lastWordPathname = location.pathname.split("/")[sizeArrPathname];
+
+  const defaultValues = {
+    full_name: driver?.full_name || "",
+    cpf: driver?.cpf || "",
+    birthday: driver?.birthday || "",
+    license: driver?.license || "",
+    license_expiration_date: driver?.license_expiration_date || "",
+    nickname: driver?.nickname || "",
+    cellphone_one: driver?.cellphone_one || "",
+    cellphone_two: driver?.cellphone_two || "",
+  };
 
   const form = useForm<IDriver>({
     resolver: yupResolver(schema),
+    defaultValues
   });
 
   const {
@@ -31,9 +49,8 @@ export const AddDrivers = () => {
 
   const onSubmit = async (data: IDriver) => {
     try {
-      const response = await dispatch(createDriver(data));
-      console.log(response.payload);
-      if ((response.payload as IDriver).id) {
+      const response: any = lastWordPathname === 'adicionar' ? await dispatch(createDriver(data)) : "";
+      if ((response.payload as any).id) {
         navigate('/dashboard/motoristas');
       }
     } catch (error) {
@@ -154,7 +171,9 @@ export const AddDrivers = () => {
                 )}
               />
             </Grid>
-            <Button title="Salvar motorista"/>
+            <Button 
+              title={lastWordPathname === 'adicionar' ? "Salvar motorista" : "Atualizar motorista"}
+            />
           </Container>
         </form>
       </FormProvider>

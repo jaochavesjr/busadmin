@@ -18,7 +18,7 @@ function App() {
         <Route path="/dashboard/clientes" element={<Clients />} />
         <Route path="/dashboard/motoristas" element={<Drivers />} />
         <Route path="/dashboard/motoristas/adicionar" element={<AddDrivers />} />
-        <Route path="/dashboard/motoristas/detalhes/:id" element={<Driver />} />
+        <Route path="/dashboard/motoristas/detalhes/:id" element={<AddDrivers />} />
       </Routes>
     </Router>
   );

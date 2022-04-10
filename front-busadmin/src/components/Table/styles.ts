@@ -25,6 +25,7 @@ export const ContainerTable = styled.div`
     }
     tbody {
       tr {
+        cursor: pointer;
         td {
           font-size: 18px;
           text-align: start;
