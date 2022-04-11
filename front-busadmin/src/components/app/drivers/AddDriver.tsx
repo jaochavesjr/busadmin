@@ -15,7 +15,8 @@ import { Button } from "../../Button";
 import { schema } from "./validations";
 import { Container, Grid } from "./styles";
 import { dateMask } from "./masks";
-import { createDriver } from "./middleware";
+import { createDriver, updateDriver } from "./middleware";
+import { formatData } from "../../../utils/formatData";
 
 export const AddDrivers = () => {
   const dispatch = useAppDispatch();
@@ -25,14 +26,14 @@ export const AddDrivers = () => {
   const { drivers } = useAppSelector((state) => state.drivers);
   const sizeArrPathname = location.pathname.split("/").length - 1;
   const driver = drivers.find((driver) => driver.id === Number(location.pathname.split("/")[sizeArrPathname]));
-  const lastWordPathname = location.pathname.split("/")[sizeArrPathname];
+  const lastPathname = location.pathname.split("/")[sizeArrPathname];
 
   const defaultValues = {
     full_name: driver?.full_name || "",
     cpf: driver?.cpf || "",
-    birthday: driver?.birthday || "",
+    birthday: formatData(driver?.birthday || '') || "",
     license: driver?.license || "",
-    license_expiration_date: driver?.license_expiration_date || "",
+    license_expiration_date: formatData(driver?.license_expiration_date || "") || "",
     nickname: driver?.nickname || "",
     cellphone_one: driver?.cellphone_one || "",
     cellphone_two: driver?.cellphone_two || "",
@@ -49,13 +50,13 @@ export const AddDrivers = () => {
 
   const onSubmit = async (data: IDriver) => {
     try {
-      const response: any = lastWordPathname === 'adicionar' ? await dispatch(createDriver(data)) : "";
+      const response: any = lastPathname === 'adicionar' ? await dispatch(createDriver(data)) : await dispatch(updateDriver({ ...data, id: lastPathname}));
       if ((response.payload as any).id) {
         navigate('/dashboard/motoristas');
       }
     } catch (error) {
       setError('Ocorreu algum erro, por favor tente novamente!')
-      console.log(error);      
+      console.log(error);
     }
   };
 
@@ -172,7 +173,7 @@ export const AddDrivers = () => {
               />
             </Grid>
             <Button 
-              title={lastWordPathname === 'adicionar' ? "Salvar motorista" : "Atualizar motorista"}
+              title={lastPathname === 'adicionar' ? "Salvar motorista" : "Atualizar motorista"}
             />
           </Container>
         </form>

@@ -3,4 +3,5 @@ export const ENDPOINTS = {
   createUser: '/users',
   showDrivers: '/drivers/list',
   createDriver: '/drivers',
+  updateDriver: (id: string) => `/drivers?id=${id}`,
 };
