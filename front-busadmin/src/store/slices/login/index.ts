@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import { IAuthState, IResponseLogin } from '../../../types/auth';
+import { IAuthState } from '../../../types/auth';
 import { login } from './middleware';
 
 const initialState: IAuthState = {
@@ -19,7 +18,7 @@ const reducers = {
   },
 };
 
-export const authSlice = createSlice({
+export const auhtSlice = createSlice({
   name: 'login',
   initialState,
   reducers,
@@ -31,8 +30,7 @@ export const authSlice = createSlice({
     }));
     builder.addCase(login.fulfilled, (state, action: PayloadAction<any>) => ({
       ...state,
-      userToken: action.payload.token,
-      loading: false,
+      userToken: action.payload,
     }));
     builder.addCase(login.rejected, (state) => ({
       ...state,
@@ -42,6 +40,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setTokenUser, removeTokenUser } = authSlice.actions;
+export const { setTokenUser, removeTokenUser } = auhtSlice.actions;
 
-export default authSlice.reducer;
+export default auhtSlice.reducer;

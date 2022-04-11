@@ -7,9 +7,9 @@ import {
 export const Dashboard = () => {
   return (
     <DashboardPage title="Dashboard">
-      {/* <div> */}
+      <Container>
         Ola mundo
-      {/* </div> */}
+      </Container>
     </DashboardPage>
   );
 }
