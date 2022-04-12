@@ -14,10 +14,11 @@ services:
     networks:
       - my-network
   frontend:
-    image: jaochavesjr/front-busadmin
+    build: .
+    image: chaves/front-busadmin:latest
     container_name: frontend
     volumes:
-      - .:/myapp/frontend
+      - .:/myapp/front-busadmin
     command: "yarn start"
     ports:
       - "3000:3000"
