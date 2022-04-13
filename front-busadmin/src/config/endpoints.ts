@@ -1,5 +1,5 @@
 export const ENDPOINTS = {
-  login: '/login',
+  login: 'auth/login',
   createUser: '/users',
   showDrivers: '/drivers/list',
   createDriver: '/drivers',

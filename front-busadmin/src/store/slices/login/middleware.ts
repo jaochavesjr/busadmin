@@ -11,9 +11,12 @@ export const login = createAsyncThunk(
   'login/login',
   async (credentials: ILogin, thunkAPI) => {
     try {
-      const response = await api.post<IResponseLogin>(ENDPOINTS.login, credentials);
-      setUserApi(response.data.token);
-      setAuthTokenUser(response.data.token);
+      const auth = { email: credentials.username, password: credentials.password };
+      const response = await api.post<IResponseLogin>(ENDPOINTS.login, auth);
+      console.log(JSON.stringify(response.data.token),);
+      
+      setUserApi(JSON.stringify(response.data.token))
+      setAuthTokenUser(JSON.stringify(response.data.token));
       return response.data;
     } catch (error) {
       console.log(error);

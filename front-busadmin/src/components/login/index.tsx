@@ -7,6 +7,8 @@ import { useAppDispatch } from '../../store/hooks';
 
 import { Container } from './styles';
 import { schema } from './validations';
+import { useEffect } from 'react';
+import { getAuthTokenUser } from '../../utils/localStorage';
 
 export interface ILogin {
   username: string;
@@ -20,6 +22,12 @@ export const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (getAuthTokenUser()) {
+      navigate('/dashboard');
+    }
+  }, []);
 
   const onSubmit = async (data: ILogin) => {
     const response = await dispatch(login(data));

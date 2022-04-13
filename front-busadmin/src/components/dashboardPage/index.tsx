@@ -1,6 +1,7 @@
 import { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAppSelector } from '../../store/hooks';
+import { getAuthTokenUser } from '../../utils/localStorage';
 import { Menu } from './menu';
 import {
   Container,
@@ -15,16 +16,11 @@ interface IProps {
 
 export const DashboardPage = ({ title = 'Admin', children }: IProps) => {
   const navigate = useNavigate();
-  
-  const { userToken } = useAppSelector((state) => state.auth);
-  
   useEffect(() => {
-      document.title = `${title} - Bus Admin`;
-  }, []);
-
-  useEffect(() => {
-    if (!userToken) navigate('/');
-  }, []);
+    if (!getAuthTokenUser()) {
+      navigate('/');
+    }
+  });
 
   return (
     <Container>

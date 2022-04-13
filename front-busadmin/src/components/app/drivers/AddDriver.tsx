@@ -23,25 +23,25 @@ export const AddDrivers = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { drivers } = useAppSelector((state) => state.drivers);
+  // const { drivers } = useAppSelector((state) => state.drivers);
   const sizeArrPathname = location.pathname.split("/").length - 1;
-  const driver = drivers.find((driver) => driver.id === Number(location.pathname.split("/")[sizeArrPathname]));
+  // const driver = drivers.find((driver) => driver.id === Number(location.pathname.split("/")[sizeArrPathname]));
   const lastPathname = location.pathname.split("/")[sizeArrPathname];
 
-  const defaultValues = {
-    full_name: driver?.full_name || "",
-    cpf: driver?.cpf || "",
-    birthday: formatData(driver?.birthday || '') || "",
-    license: driver?.license || "",
-    license_expiration_date: formatData(driver?.license_expiration_date || "") || "",
-    nickname: driver?.nickname || "",
-    cellphone_one: driver?.cellphone_one || "",
-    cellphone_two: driver?.cellphone_two || "",
-  };
+  // const defaultValues = {
+  //   full_name: driver?.full_name || "",
+  //   cpf: driver?.cpf || "",
+  //   birthday: driver?.birthday ? formatData(driver?.birthday || '') : "",
+  //   license: driver?.license || "",
+  //   license_expiration_date: driver?.license_expiration_date ? formatData(driver?.license_expiration_date || "") : "" ,
+  //   nickname: driver?.nickname || "",
+  //   cellphone_one: driver?.cellphone_one || "",
+  //   cellphone_two: driver?.cellphone_two || "",
+  // };
 
   const form = useForm<IDriver>({
     resolver: yupResolver(schema),
-    defaultValues
+    // defaultValues
   });
 
   const {
@@ -50,8 +50,12 @@ export const AddDrivers = () => {
 
   const onSubmit = async (data: IDriver) => {
     try {
+      console.log(data);
+      
       const response: any = lastPathname === 'adicionar' ? await dispatch(createDriver(data)) : await dispatch(updateDriver({ ...data, id: lastPathname}));
-      if ((response.payload as any).id) {
+      console.log(response);
+      
+      if ((response.payload as any)) {
         navigate('/dashboard/motoristas');
       }
     } catch (error) {

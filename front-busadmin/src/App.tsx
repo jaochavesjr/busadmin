@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Login } from './pages/login';
 import GlobalStyle from './styles/global';
 import { Dashboard } from './pages/dashboard';
 import { Clients } from './pages/clients/Clients';
 import { Drivers } from './pages/drivers';
 import { AddDrivers } from './components/app/drivers/AddDriver';
-import { Driver } from './components/app/drivers/Driver';
+import { getAuthTokenUser } from './utils/localStorage';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <GlobalStyle />

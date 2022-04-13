@@ -16,7 +16,7 @@ export const Table = ({ thead, tbody }: Props) => {
   return (
     <ContainerTable>
       <Link to={"/dashboard/motoristas/adicionar"}>Adicionar motorista</Link>
-      <table>
+      { tbody &&(<table>
         <thead>
           <tr>
             {thead.map((title) => (
@@ -27,7 +27,7 @@ export const Table = ({ thead, tbody }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {tbody.map((driver) => (
+          {tbody && tbody.map((driver) => (
             <>
               <tr onClick={() => navigateForDetailsDriver(driver.id)}>
                 <td>{driver.full_name}</td>
@@ -38,7 +38,7 @@ export const Table = ({ thead, tbody }: Props) => {
             </>
           ))}
         </tbody>
-      </table>
+      </table>)}
     </ContainerTable>
   );
 };
