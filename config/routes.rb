@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resource :users, only: [:create]
+  resource :drivers, only: %i[create show update]
+  get '/drivers/list', to: 'drivers#list'
+  post '/auth/login', to: 'authentication#login'
+  #post '/login', to: 'users#login'
+  #get '/auto_login', to: 'users#auto_login'
 end
