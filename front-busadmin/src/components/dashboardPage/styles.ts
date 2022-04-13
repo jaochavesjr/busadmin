@@ -13,7 +13,10 @@ export const SubContainer = styled.div`
 export const Header = styled.h2`
   display: flex;
   width: 100%;
-  padding: 2em;
-  background: #d2d2d2;
+  padding: 1em 2em;
+  background: #F7F8FB;
   color: #2d2d2d;
+  background: #3C63D2;
+  color: #C5C6F0;
+  font-size: 26px;
 `;

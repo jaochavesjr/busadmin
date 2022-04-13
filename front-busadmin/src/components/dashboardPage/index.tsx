@@ -16,11 +16,13 @@ interface IProps {
 
 export const DashboardPage = ({ title = 'Admin', children }: IProps) => {
   const navigate = useNavigate();
+  const token = getAuthTokenUser();
   useEffect(() => {
+    console.log(!token)
     if (!getAuthTokenUser()) {
       navigate('/');
     }
-  });
+  }, []);
 
   return (
     <Container>

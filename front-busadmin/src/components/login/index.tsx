@@ -19,12 +19,16 @@ export const Login = () => {
   const { handleSubmit, register, formState: { errors } } = useForm<ILogin>({
     resolver: yupResolver(schema),
   });
-
+  const tokenUser = getAuthTokenUser();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (getAuthTokenUser()) {
+    console.log(tokenUser);
+    
+    if (tokenUser !== null) {
+      console.log(tokenUser);
+
       navigate('/dashboard');
     }
   }, []);

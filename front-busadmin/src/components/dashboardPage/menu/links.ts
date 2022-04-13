@@ -4,6 +4,8 @@ interface IProps {
   label: string;
   href: string;
   icon: ICon;
+  subLinks?: any;
+
 }
 
 interface ICon {
@@ -22,7 +24,7 @@ export const links: IProps[] = [
       alt: 'icone dashboard',
       width: 30,
       height: 30,
-    }
+    },
   },
   {
     label: 'Clientes',
@@ -32,7 +34,10 @@ export const links: IProps[] = [
       alt: 'icone cliente',
       width: 30,
       height: 30,
-    }
+    },
+    subLinks: [
+      { title: 'Adicionar', link: 'adicionar'}
+    ]
   },
   {
     label: 'Motoristas',

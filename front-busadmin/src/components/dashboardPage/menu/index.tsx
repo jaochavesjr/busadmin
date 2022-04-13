@@ -26,12 +26,14 @@ export const Menu = () => {
       </Header>
       <Nav>
         {links.map(({ icon, href, label }, index) => (
-          <Link key={index} to={`/dashboard/${href}`} className={cn({
-            ['linkActive']: url === href,
-          })}>
-              <img src={icon.src} alt={icon.alt} style={{ minWidth: icon.width, maxWidth: icon.width, minHeight: icon.height, maxHeight: icon.height }} />
-              {label}
-          </Link>
+          <>
+            <Link key={index} to={`/dashboard/${href}`} className={cn({
+              ['linkActive']: url === href,
+            })}>
+                <img src={icon.src} alt={icon.alt} style={{ minWidth: icon.width, maxWidth: icon.width, minHeight: icon.height, maxHeight: icon.height }} />
+                {label}
+            </Link>
+          </>
         ))}
       </Nav>
     </Container>
