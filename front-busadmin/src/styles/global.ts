@@ -13,6 +13,7 @@ export default createGlobalStyle`
   body, input, button, label {
     font: 14px 'Roboto', sans-serif;
     color: #2d2d2d;
+    background: #F1F1F1;
   }
 
   input {

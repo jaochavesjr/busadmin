@@ -1,15 +1,23 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks"
+import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
+
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { fetchDrivers } from "../../../store/slices/drivers/midleware";
-import { DashboardPage } from "../../dashboardPage"
-import { Table } from "../../Table"
+
+import { DashboardPage } from "../../dashboardPage";
+import { ContainerTable } from '../../Table/styles';
 
 export const Drivers = () => {
   const dispatch = useAppDispatch();
 
   const { drivers } = useAppSelector((state) => state.drivers );
 
-  console.log(drivers);
+  const navigate = useNavigate();
+
+  const navigateForDetailsDriver = (id: any) => {
+    navigate(`/dashboard/motoristas/detalhes/${String(id)}`);
+  };
 
   const thead = [
     'Nome',
@@ -24,7 +32,34 @@ export const Drivers = () => {
 
   return (
     <DashboardPage title="Motoristas">
-      <Table thead={thead} tbody={drivers} />
+      <ContainerTable>
+        {/* <Link to={"/dashboard/motoristas/adicionar"}>Adicionar motorista</Link> */}
+        {drivers && (
+          <table>
+            <thead>
+              <tr>
+                {thead.map((title) => (
+                  <th>
+                    {title}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {drivers && drivers.map((driver) => (
+                <>
+                  <tr onClick={() => navigateForDetailsDriver(driver.id)}>
+                    <td>{driver.full_name}</td>
+                    <td>{driver.cpf}</td>
+                    <td>{driver.birthday}</td>
+                    <td>{driver.cellphone_one}</td>
+                  </tr>
+                </>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </ContainerTable>
     </DashboardPage>
   )
 }

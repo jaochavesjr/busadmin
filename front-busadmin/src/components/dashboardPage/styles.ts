@@ -8,15 +8,34 @@ export const SubContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+
 `;
 
-export const Header = styled.h2`
+export const Header = styled.div`
   display: flex;
   width: 100%;
   padding: 1em 2em;
   background: #F7F8FB;
-  color: #2d2d2d;
-  background: #3C63D2;
-  color: #C5C6F0;
-  font-size: 26px;
+  background: #fff;
+  align-items: center;
+  gap: 5em;
+
+  h2 {
+    width: 250px;
+    color: #2d2d2d;
+    font-size: 26px;
+  }
+
+  .container-search {
+    display: flex;
+    max-width: 500px;
+    width: 100%;
+    .input-search {
+      border-radius: 6px;
+      padding: .8em 0.7em;
+      width: 100%;
+      font-size: 20px;
+    }
+  }
 `;
+

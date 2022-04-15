@@ -26,10 +26,14 @@ export const DashboardPage = ({ title = 'Admin', children }: IProps) => {
 
   return (
     <Container>
+      {/* <HeaderUser /> */}
       <Menu />
       <SubContainer>
         <Header>
-          {title}
+          <h2>{title}</h2>
+          <div className='container-search'>
+            <input type="text" className='input-search' />
+          </div>
         </Header>
         {children}
       </SubContainer>
