@@ -1,6 +1,5 @@
 import { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { useAppSelector } from '../../store/hooks';
 import { getAuthTokenUser } from '../../utils/localStorage';
 import { Menu } from './menu';
 import {
@@ -30,11 +29,17 @@ export const DashboardPage = ({ title = 'Admin', children }: IProps) => {
       <Menu />
       <SubContainer>
         <Header>
-          <h2>{title}</h2>
           <div className='container-search'>
             <input type="text" className='input-search' />
+            <div className='container-icon-search'>
+              <img src='/icons/search.svg' alt='icone pesquisa' />
+            </div>
+          </div>
+          <div className='profile'>
+            <p>Fulano da Silva</p>
           </div>
         </Header>
+        <h2>{title}</h2>
         {children}
       </SubContainer>
     </Container>
