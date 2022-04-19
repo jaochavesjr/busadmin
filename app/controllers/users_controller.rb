@@ -2,39 +2,29 @@
 
 # controller do User
 class UsersController < ApplicationController
-  #before_action :authorized, only: [:auto_login]
-  skip_before_action :authenticate_request, only: [:create]
-
-  # REGISTER
   def create
     @user = User.create(user_params)
     if @user.valid?
-      # token = encode_token({ user_id: @user.id })
-      render json: { user: @user }
+      token = encode_token({ user_id: @user.id })
+      render json: { user: @user, token: token }, status: :ok
     else
-      render json: { error: 'Invalid username or password' }
+      render json: { error: 'Username ou senha inválidos' }, status: :unprocessable_entity
     end
   end
 
-  # # LOGGING IN
-  # def login
-  #   @user = User.find_by(username: params[:username])
-
-  #   if @user && @user.authenticate(params[:password])
-  #     token = encode_token({ user_id: @user.id })
-  #     render json: { user: @user, token: token }
-  #   else
-  #     render json: { error: 'Invalid username or password' }
-  #   end
-  # end
-
-  # def auto_login
-  #   render json: @user
-  # end
+  def login
+    @user = User.find_by(username: user_params[:username])
+    if @user && @user.authenticate(user_params[:password])
+      token = encode_token({ user_id: @user.id })
+      render json: { user: @user, token: token }, status: :ok
+    else
+      ender json: { error: 'Username ou senha inválidos' }, status: :unprocessable_entity
+    end
+  end
 
   private
 
   def user_params
-    params.permit(:username, :password, :email)
+    params.require(:user).permit(:username, :password)
   end
 end

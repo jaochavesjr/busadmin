@@ -2,6 +2,7 @@
 
 # Controller do Motorista
 class DriversController < ApplicationController
+  before_action :authorize
   before_action :set_driver, only: %i[update show]
 
   def list
