@@ -7,6 +7,15 @@ pt-BR:
       driver:
         one: Motorista
         other: Motoristas
+      client:
+        one: Cliente
+        other: Clientes
+      address:
+        one: Endereço
+        other: Endereços
+      city:
+        one: Cidade
+        other: Cidades
     attributes:
       user:
         username: username
@@ -16,11 +25,24 @@ pt-BR:
         full_name: nome completo
         nickname: apelido
         cpf: cpf
-        birthday: data de aniversário
+        birthday: data de nascimento
         license: número da habilitação
         license_expiration_date: data de vencimento da habilitação
         cellphone_one: número celular 1
         cellphone_two: número celular 2
+      client:
+        full_name: nome completo
+        type_document: tipo de documento rg/cpf
+        document: documento
+        birthday: data de aniversário
+        cellphone: celular de contato
+        under_age: menor de idade ?
+      address:
+        street: endereço
+        complement: complemento
+        district: bairro/distrito
+      city:
+        name: nome da cidade
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"

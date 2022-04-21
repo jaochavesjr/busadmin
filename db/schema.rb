@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_010413) do
+ActiveRecord::Schema.define(version: 2022_04_20_184246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "district"
+    t.string "complement"
+    t.bigint "city_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_addresses_on_city_id"
+    t.index ["client_id"], name: "index_addresses_on_client_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "full_name"
+    t.string "type_document"
+    t.string "document"
+    t.string "cellphone"
+    t.date "birthday"
+    t.boolean "under_age"
+    t.boolean "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "drivers", force: :cascade do |t|
     t.string "full_name"
@@ -37,4 +67,6 @@ ActiveRecord::Schema.define(version: 2022_01_25_010413) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "addresses", "cities"
+  add_foreign_key "addresses", "clients"
 end

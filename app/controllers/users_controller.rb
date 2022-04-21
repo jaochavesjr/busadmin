@@ -3,7 +3,7 @@
 # controller do User
 class UsersController < ApplicationController
   def create
-    @user = User.create(user_params)
+    @user = User.create(params_user)
     if @user.valid?
       token = encode_token({ user_id: @user.id })
       render json: { user: @user, token: token }, status: :ok
@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by(username: user_params[:username])
-    if @user && @user.authenticate(user_params[:password])
+    @user = User.find_by(username: params_user[:username])
+    if @user && @user.authenticate(params_user[:password])
       token = encode_token({ user_id: @user.id })
       render json: { user: @user, token: token }, status: :ok
     else
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
+  def params_user
     params.require(:user).permit(:username, :password)
   end
 end

@@ -13,19 +13,19 @@ services:
       - db
     networks:
       - my-network
-  frontend:
-    build: .
-    image: chaves/front-busadmin:latest
-    container_name: frontend
-    volumes:
-      - .:/myapp/front-busadmin
-    command: "yarn start"
-    ports:
-      - "3000:3000"
-    depends_on:
-    - web
-    networks:
-      - my-network
+  # frontend:
+  #   build: .
+  #   image: chaves/front-busadmin:latest
+  #   container_name: frontend
+  #   volumes:
+  #     - .:/myapp/front-busadmin
+  #   command: "yarn start"
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #   - web
+  #   networks:
+  #     - my-network
   db:
     image: postgres
     restart: always

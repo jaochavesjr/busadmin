@@ -17,8 +17,8 @@ test:
   <<: *default
   database: busadmin_web_test
   username: postgres
-  password: password
-  host: db
+  password: postgres
+  host: localhost
   port: 5432
 
 production:
