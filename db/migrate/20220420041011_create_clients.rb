@@ -7,7 +7,7 @@ class CreateClients < ActiveRecord::Migration[7.0]
       t.string :cellphone
       t.date :birthday
       t.boolean :under_age
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps
     end

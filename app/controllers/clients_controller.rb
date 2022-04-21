@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
                  Client.where('document LIKE :word OR full_name LIKE :word',
                               word: '%' + params[:q] + '%')
                end
-    render json: @clients
+    render json: @clients, include: [:address]
   end
 
   def create
@@ -27,14 +27,14 @@ class ClientsController < ApplicationController
 
   def update
     if @client.update(params_client)
-      render json: @client
+      render json: @client, include: [:address], status: :ok
     else
       render json: @client.errors, status: :unprocessable_entity
     end
   end
 
   def show
-    render json: @client
+    render json: @client, include: [:address]
   end
 
   def cities

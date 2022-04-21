@@ -16,11 +16,15 @@ pt-BR:
       city:
         one: Cidade
         other: Cidades
+      bus:
+        one: Ônibus
+        other: Ônibus
     attributes:
       user:
         username: username
         email: e-mail
         password: senha
+        active: ativo
       driver:
         full_name: nome completo
         nickname: apelido
@@ -30,6 +34,7 @@ pt-BR:
         license_expiration_date: data de vencimento da habilitação
         cellphone_one: número celular 1
         cellphone_two: número celular 2
+        active: ativo
       client:
         full_name: nome completo
         type_document: tipo de documento rg/cpf
@@ -37,12 +42,21 @@ pt-BR:
         birthday: data de aniversário
         cellphone: celular de contato
         under_age: menor de idade ?
+        active: ativo
       address:
         street: endereço
         complement: complemento
         district: bairro/distrito
       city:
         name: nome da cidade
+      bus:
+        prefix: prefixo
+        plate: placa
+        model_description: descrição do modelo
+        year: ano
+        number_of_seats: número de assentos
+        active: ativo
+        toilet: banheiro
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"

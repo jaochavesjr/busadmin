@@ -46,6 +46,6 @@ class DriversController < ApplicationController
   def params_driver
     params.require(:driver).permit(:full_name, :cpf, :birthday, :license,
                                    :license_expiration_date, :nickname,
-                                   :cellphone_two, :cellphone_one)
+                                   :cellphone_two, :cellphone_one, :active)
   end
 end

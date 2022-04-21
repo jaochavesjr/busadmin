@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_20_184246) do
+ActiveRecord::Schema.define(version: 2022_04_21_025916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 2022_04_20_184246) do
     t.index ["client_id"], name: "index_addresses_on_client_id"
   end
 
+  create_table "buses", force: :cascade do |t|
+    t.string "prefix"
+    t.string "plate"
+    t.string "model_description"
+    t.string "year"
+    t.boolean "toilet"
+    t.integer "number_of_seats"
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -40,7 +52,7 @@ ActiveRecord::Schema.define(version: 2022_04_20_184246) do
     t.string "cellphone"
     t.date "birthday"
     t.boolean "under_age"
-    t.boolean "status"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -51,9 +63,9 @@ ActiveRecord::Schema.define(version: 2022_04_20_184246) do
     t.date "birthday"
     t.string "license"
     t.date "license_expiration_date"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0
     t.string "nickname"
     t.string "cellphone_one"
     t.string "cellphone_two"
@@ -63,6 +75,7 @@ ActiveRecord::Schema.define(version: 2022_04_20_184246) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

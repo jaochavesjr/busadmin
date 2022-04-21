@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prefix: MyString
+  plate: MyString
+  model_description: MyString
+  year: MyString
+  toilet: false
+  number_of_seats: 1
+  status: false
+
+two:
+  prefix: MyString
+  plate: MyString
+  model_description: MyString
+  year: MyString
+  toilet: false
+  number_of_seats: 1
+  status: false
