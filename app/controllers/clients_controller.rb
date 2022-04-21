@@ -39,7 +39,7 @@ class ClientsController < ApplicationController
 
   def cities
     @cities = City.all
-    render json: @cities.name
+    render json: @cities
   end
 
   private
