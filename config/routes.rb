@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   post '/login', to: 'users#login'
   get '/drivers/list', to: 'drivers#list'
   get '/clients/list', to: 'clients#list'
+  get '/clients/cities', to: 'clients#cities'
 end
