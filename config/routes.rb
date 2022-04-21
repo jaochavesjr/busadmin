@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resource :clients, only: %i[create show update]
   post '/login', to: 'users#login'
   get '/drivers/list', to: 'drivers#list'
+  get '/clients/list', to: 'clients#list'
 end

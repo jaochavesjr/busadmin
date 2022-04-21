@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
     @clients = if params[:q].blank?
                  Client.all
                else
-                 Client.where('nickname LIKE :word OR full_name LIKE :word OR cpf LIKE :word',
+                 Client.where('document LIKE :word OR full_name LIKE :word',
                               word: '%' + params[:q] + '%')
                end
     render json: @clients
