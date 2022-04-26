@@ -19,6 +19,9 @@ pt-BR:
       bus:
         one: Ônibus
         other: Ônibus
+      travel:
+        one: Viagem
+        other: Viagens
     attributes:
       user:
         username: username
@@ -57,6 +60,15 @@ pt-BR:
         number_of_seats: número de assentos
         active: ativo
         toilet: banheiro
+      travel:
+        origin: origem da Viagem
+        destination: destino da Viagem
+        driver: motorista
+        bus: ônibus
+        date: data e hora da viagem
+        status:
+          open: viagem aberta
+          closed: viagem encerrada
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"

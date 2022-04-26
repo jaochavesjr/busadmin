@@ -9,8 +9,7 @@ class BusesController < ApplicationController
     @buses = if params[:q].blank?
                Bus.all
              else
-               Bus.where('prefix LIKE :word OR plate LIKE :word',
-               word: '%' + params[:q] + '%')
+               Bus.where('prefix LIKE :word OR plate LIKE :word', word: " '%' #{params[:q]} '%' ")
              end
     render json: @buses
   end
