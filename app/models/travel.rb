@@ -8,7 +8,5 @@ class Travel < ApplicationRecord
   belongs_to :destination, class_name: 'City'
   validates :date, :status, presence: true
 
-  enum status: { open:1, closed:2 }
+  enum status: { open: 1, closed: 2 }
 end
-
-

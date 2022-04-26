@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_21_025916) do
+ActiveRecord::Schema.define(version: 2022_04_25_224856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,21 @@ ActiveRecord::Schema.define(version: 2022_04_21_025916) do
     t.string "cellphone_two"
   end
 
+  create_table "travels", force: :cascade do |t|
+    t.bigint "bus_id", null: false
+    t.bigint "driver_id", null: false
+    t.bigint "origin_id", null: false
+    t.bigint "destination_id", null: false
+    t.datetime "date", precision: 6
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bus_id"], name: "index_travels_on_bus_id"
+    t.index ["destination_id"], name: "index_travels_on_destination_id"
+    t.index ["driver_id"], name: "index_travels_on_driver_id"
+    t.index ["origin_id"], name: "index_travels_on_origin_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -82,4 +97,8 @@ ActiveRecord::Schema.define(version: 2022_04_21_025916) do
 
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "clients"
+  add_foreign_key "travels", "buses"
+  add_foreign_key "travels", "cities", column: "destination_id"
+  add_foreign_key "travels", "cities", column: "origin_id"
+  add_foreign_key "travels", "drivers"
 end
